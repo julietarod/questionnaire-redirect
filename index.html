@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Round-Robin Questionnaire Redirect</title>
+  </head>
+  <body>
+    <script>
+      // Define the URLs for your questionnaires
+      var questionnaires = [
+        "https://www.survey-xact.dk/LinkCollector?key=1CN7UCJ8SNC1",
+        "https://www.survey-xact.dk/LinkCollector?key=58W5LJGMJP9K",
+        "https://www.survey-xact.dk/LinkCollector?key=42C8U6GLU51K",
+        "https://www.survey-xact.dk/LinkCollector?key=MQZQS6ELSJC1",
+      ];
+
+      // Function to rotate the links in a round-robin manner
+      function rotateLinks() {
+        var firstLink = questionnaires.shift(); // Remove the first link
+        questionnaires.push(firstLink); // Add the removed link to the end
+      }
+
+      // Function to get the next questionnaire index
+      function getNextQuestionnaireIndex() {
+        return Math.floor(Math.random() * questionnaires.length); // Randomly choose the next questionnaire
+      }
+
+      // Function to redirect to the next questionnaire
+      function redirectToNextQuestionnaire() {
+        var nextIndex = getNextQuestionnaireIndex(); // Get the index of the next questionnaire
+        var nextQuestionnaire = questionnaires[nextIndex]; // Get the URL of the next questionnaire
+        window.location.href = nextQuestionnaire; // Redirect to the next questionnaire
+      }
+
+      // Rotate the links initially
+      rotateLinks();
+
+      // Redirect to the first questionnaire
+      redirectToNextQuestionnaire();
+    </script>
+  </body>
+</html>
